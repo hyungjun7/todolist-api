@@ -1,5 +1,6 @@
 import { CoreModule } from '@app/core'
-import { Module } from '@nestjs/common'
+import { AssignIdMiddleware } from '@app/middlewares'
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common'
 import { ApiController } from './api.controller'
 import { ApiService } from './api.service'
 
@@ -8,4 +9,8 @@ import { ApiService } from './api.service'
   controllers: [ApiController],
   providers: [ApiService]
 })
-export class ApiModule {}
+export class ApiModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(AssignIdMiddleware).forRoutes('*')
+  }
+}
