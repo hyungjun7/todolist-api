@@ -1,5 +1,4 @@
 import { LoggerService } from '@app/logger'
-import { NestMiddleware } from '@nestjs/common'
 import { Injectable } from '@nestjs/common'
 import { Response } from 'express'
 import * as morgan from 'morgan'
@@ -12,7 +11,7 @@ morgan.token('body', (req: any) => {
 export class LoggingMiddleware {
   constructor(private readonly logger: LoggerService) {}
   module = morgan(this.jsonFormat, {
-    skip: (req, res) => req.body.operationName === 'IntrospectionQuery',
+    skip: (req) => req.body.operationName === 'IntrospectionQuery',
     stream: {
       write: (text) => {
         const { message, data } = this.parseHttpLog(text)

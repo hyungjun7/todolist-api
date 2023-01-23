@@ -1,5 +1,5 @@
-import { Controller, Get } from '@nestjs/common';
-import { BatchService } from './batch.service';
+import { Controller, Get } from '@nestjs/common'
+import { BatchService } from './batch.service'
 
 @Controller()
 export class BatchController {
@@ -7,6 +7,6 @@ export class BatchController {
 
   @Get()
   getHello(): string {
-    return this.batchService.getHello();
+    return this.batchService.getHello()
   }
 }
