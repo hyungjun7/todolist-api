@@ -9,7 +9,7 @@ export class UserResolver {
     @Inject('UserService') private findUserUseCase: FindUserUseCase
   ) {}
 
-  @Query(() => User)
+  @Query(() => User, { name: 'QueryUser' })
   user(@Args('userId', { type: () => Int }) userId: number) {
     return this.findUserUseCase.findUser(userId)
   }
