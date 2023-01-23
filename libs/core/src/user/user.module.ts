@@ -1,11 +1,13 @@
 import { DatabaseModule } from '@app/database'
 import { Module } from '@nestjs/common'
+import { AuthModule } from '../auth/auth.module'
 import { UserResolver } from './controllers/user.resolver'
 import { UserRepository } from './repository/user.repository'
+import { RegisterService } from './service/register.service'
 import { UserService } from './service/user.service'
 
 @Module({
-  imports: [DatabaseModule],
+  imports: [DatabaseModule, AuthModule],
   providers: [
     UserResolver,
     {
@@ -15,6 +17,10 @@ import { UserService } from './service/user.service'
     {
       provide: 'UserRepository',
       useClass: UserRepository
+    },
+    {
+      provide: 'RegisterService',
+      useClass: RegisterService
     }
   ]
 })

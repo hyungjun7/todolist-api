@@ -8,6 +8,10 @@ export class User {
   provider: AuthProvider
   status: boolean
   createdAt: Date
+
+  constructor(data: Partial<User>) {
+    Object.assign(this, data)
+  }
 }
 
 export enum AuthProvider {
