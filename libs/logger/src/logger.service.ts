@@ -45,8 +45,11 @@ export class LoggerService implements NestLoggerService {
       ]
     })
   }
-  log(message: any) {
-    this.logger.log(message)
+  log(message: any, ...optionalParams: any[]) {
+    this.logger.info(message, ...optionalParams)
+  }
+  info(message: any, ...optionalParams: any[]) {
+    this.logger.info(message, ...optionalParams)
   }
   error(message: any, ...optionalParams: any[]) {
     this.logger.error(message, ...optionalParams)
