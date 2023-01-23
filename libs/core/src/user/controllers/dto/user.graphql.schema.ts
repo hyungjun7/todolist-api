@@ -1,4 +1,4 @@
-import { Field, Int, ObjectType, registerEnumType } from '@nestjs/graphql'
+import { Field, InputType, Int, ObjectType, registerEnumType } from '@nestjs/graphql'
 import { AuthProvider } from '../../domain/user'
 
 @ObjectType()
@@ -26,6 +26,27 @@ export class User {
 
   @Field(() => Date)
   createdAt?: Date
+}
+
+@InputType()
+export class CreateUserInput {
+  @Field()
+  account: string
+
+  @Field()
+  nickname: string
+
+  @Field({ nullable: true })
+  description?: string
+
+  @Field({ nullable: true })
+  profileImage?: string
+
+  @Field()
+  socialToken: string
+
+  @Field(() => AuthProvider)
+  provider: AuthProvider
 }
 
 registerEnumType(AuthProvider, {
