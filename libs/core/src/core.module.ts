@@ -2,6 +2,7 @@ import { DatabaseModule } from '@app/database'
 import { ApolloDriver } from '@nestjs/apollo'
 import { Module } from '@nestjs/common'
 import { GraphQLModule } from '@nestjs/graphql'
+import { AuthModule } from './auth/auth.module'
 import { UserModule } from './user/user.module'
 
 @Module({
@@ -15,7 +16,8 @@ import { UserModule } from './user/user.module'
       }
     }),
     DatabaseModule,
-    UserModule
+    UserModule,
+    AuthModule
   ],
   providers: [],
   exports: []
